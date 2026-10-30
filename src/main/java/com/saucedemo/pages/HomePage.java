@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.saucedemo.base.BasePage2;
 import org.openqa.selenium.By;
 
 import com.saucedemo.base.BasePage;
 import com.saucedemo.pages.windows.DateRangeWindow;
 import com.saucedemo.utilities.JavaScriptUtility;
 
-public class HomePage extends BasePage {
+public class HomePage extends BasePage2 {
 	
 	private By search_location_input = By.cssSelector("input[name='ss']");
 	private By dates_window_button = By.cssSelector("button[data-testid='searchbox-dates-container']");

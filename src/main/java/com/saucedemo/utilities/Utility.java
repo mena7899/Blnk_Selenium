@@ -2,7 +2,7 @@ package com.saucedemo.utilities;
 
 import org.openqa.selenium.WebDriver;
 
-import com.saucedemo.base.BasePage;
+import com.saucedemo.base.BasePage2;
 
 //the utilities classes is where actions happens and this utility class can be considered as Base class
 //and all the classer will extend it
@@ -13,7 +13,7 @@ public class Utility  {
 	//this method will be called in the base test
 	public static void setWebDriver() {
 		
-		driver = BasePage.driver;
+		driver = BasePage2.getDriver();
 	}
 	
 	

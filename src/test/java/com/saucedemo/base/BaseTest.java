@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.util.*;
 
+import com.saucedemo.pages.LoginPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,8 +27,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class BaseTest {
 
     protected WebDriver driver;
-    protected BasePage basePage;
-    protected HomePage homePage;
+    protected BasePage2 basePage;
+    protected LoginPage loginPage;
     private String url = "https://www.saucedemo.com";
 
     public static String getChromeDriverPath() {
@@ -103,7 +104,7 @@ public class BaseTest {
                 System.out.println(" Screenshot directory cleaned.");
             }
         } else {
-            System.out.println("⚠ Screenshot directory does not exist: " + screenshotDirPath);
+            System.out.println("Screenshot directory does not exist: " + screenshotDirPath);
         }
     }
 
@@ -134,10 +135,10 @@ public class BaseTest {
         //System.setProperty("webdriver.chrome.driver", getChromeDriverPath());
         driver.manage().window().maximize();
         driver.get(url);
-        basePage = new BasePage();
+        basePage = new BasePage2();
         basePage.setDriver(driver);
         setWebDriver();
-        homePage = new HomePage();
+        loginPage = new LoginPage();
         
     }
 
@@ -267,7 +268,8 @@ public class BaseTest {
     }
 
     @AfterClass
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
+        Thread.sleep(10000);
     	driver.manage().deleteAllCookies();
         driver.quit();
         //BasePage2.quitDriver();

@@ -1,11 +1,12 @@
 package com.saucedemo.pages.windows;
 
+import com.saucedemo.base.BasePage2;
 import org.openqa.selenium.By;
 
 import com.saucedemo.base.BasePage;
 import com.saucedemo.utilities.JavaScriptUtility;
 
-public class DateRangeWindow extends BasePage {
+public class DateRangeWindow extends BasePage2 {
 	
 	private By next_month_button = By.cssSelector("button[aria-label='Next month']");
 	

@@ -2,13 +2,14 @@ package com.saucedemo.pages;
 
 
 
+import com.saucedemo.base.BasePage2;
 import org.openqa.selenium.By;
 
 import com.saucedemo.base.BasePage;
 import com.saucedemo.utilities.DropDownUtility;
 import com.saucedemo.utilities.JavaScriptUtility;
 
-public class DetailsPage extends BasePage {
+public class DetailsPage extends BasePage2 {
 	
 	private By queen_bed_button = By.cssSelector("div[class='hprt-roomtype-bed'] input[value='2']");
 	private By amount_drop_down_list= By.cssSelector("select[class='hprt-nos-select js-hprt-nos-select']");
