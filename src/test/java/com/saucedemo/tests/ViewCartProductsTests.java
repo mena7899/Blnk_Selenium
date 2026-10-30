@@ -3,6 +3,7 @@ package com.saucedemo.tests;
 import com.saucedemo.base.BaseTest;
 import com.saucedemo.pages.CartPage;
 import com.saucedemo.pages.ProductsPage;
+import com.saucedemo.pages.components.TopHeader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -25,7 +26,8 @@ public class ViewCartProductsTests extends BaseTest{
 		String secondProdcutName = productsPage.getProductNames().get(1);
 		System.out.println("Second product name: " + secondProdcutName);
 		productsPage.addProductToCart(secondProdcutName);
-		productsPage.openCart();
+		TopHeader topHeader = new TopHeader();
+		topHeader.openCart();
 		CartPage cartPage = new CartPage();
 		String firstCartProdcutName = cartPage.getCartProductNames().get(0);
 		System.out.println("First cart product name: " + firstCartProdcutName);

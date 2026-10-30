@@ -24,8 +24,7 @@ public class ProductsPage extends BasePage2 {
 	private By removeButtons =
 			By.xpath("//button[contains(@id,'remove')]");
 
-	private By cartIcon = By.className("shopping_cart_link");
-	private By cartBadge = By.className("shopping_cart_badge");
+
 
 	// Sorting
 	// Options:
@@ -92,18 +91,7 @@ public class ProductsPage extends BasePage2 {
 		return prices;
 	}
 
-	// Cart
-	public void openCart() {
-		click(cartIcon);
-	}
 
-	public String getCartBadgeCount() {
-		return find(cartBadge).getText();
-	}
-
-	public boolean isCartBadgeDisplayed() {
-		return isElementVisible(cartBadge);
-	}
 
 	// Validation
 	public boolean isProductsPageDisplayed() {

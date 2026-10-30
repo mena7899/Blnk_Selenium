@@ -30,6 +30,9 @@ public class CartPage extends BasePage2 {
 			By.id("continue-shopping");
 
 
+	private By checkoutButton =
+			By.id("checkout");
+
 
 	// Remove product by name
 	public void removeProduct(String productName) {
@@ -89,5 +92,9 @@ public class CartPage extends BasePage2 {
 
 		//findList(cartItems).isEmpty();
 		return driver.findElements(cartItems).isEmpty();
+	}
+
+	public void clickCheckout() {
+		click(checkoutButton);
 	}
 }
