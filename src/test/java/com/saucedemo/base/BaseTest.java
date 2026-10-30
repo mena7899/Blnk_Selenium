@@ -272,8 +272,8 @@ public class BaseTest {
     }
 
     @AfterClass
-    public void tearDown() throws InterruptedException {
-        Thread.sleep(10000);
+    public void tearDown() {
+
     	driver.manage().deleteAllCookies();
         driver.quit();
         //BasePage2.quitDriver();
