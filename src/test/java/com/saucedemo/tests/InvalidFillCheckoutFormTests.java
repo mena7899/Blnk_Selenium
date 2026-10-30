@@ -14,7 +14,7 @@ public class InvalidFillCheckoutFormTests extends BaseTest{
 
 
 
-	@Test(priority=10)
+	@Test(priority=11)
 	public void InvalidFillCheckoutFormTest() {
 
 		loginPage.enterUsername("standard_user");
