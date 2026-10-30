@@ -14,7 +14,7 @@ public class CancelCheckoutFormTests extends BaseTest{
 
 
 
-	@Test(priority=12)
+	@Test(priority=11)
 	public void CancelCheckoutTest() {
 
 		loginPage.enterUsername("standard_user");
