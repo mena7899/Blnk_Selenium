@@ -86,6 +86,8 @@ public class CartPage extends BasePage2 {
 	}
 
 	public boolean isCartEmpty() {
+
+		//findList(cartItems).isEmpty();
 		return driver.findElements(cartItems).isEmpty();
 	}
 }
