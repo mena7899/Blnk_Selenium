@@ -93,7 +93,7 @@ public class BasePage2 {
 		find(locator).sendKeys(text);
 	}
 	
-	protected void reloadPage() {
+	public void reloadPage() {
 	    driver.navigate().refresh();
 	    //driver.get(driver.getCurrentUrl());
 	}

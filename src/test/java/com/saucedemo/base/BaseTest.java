@@ -16,13 +16,10 @@ import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import com.saucedemo.base.BasePage;
-import com.saucedemo.pages.HomePage;
 import com.saucedemo.utilities.EmailHelper;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
 
@@ -110,26 +107,33 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        ChromeOptions options = new ChromeOptions();
+        ChromeOptions ciOptions = new ChromeOptions();
+        ChromeOptions localOptions = new ChromeOptions();
         WebDriverManager.chromedriver().setup();
         boolean isCI = System.getProperty("ci") != null || System.getenv("JENKINS_HOME") != null;
         if (isCI) {
             System.out.println( this.getClass().getSimpleName()+ "Running in CI environment. Launching browser in headless mode.");
-//            String chromeArgs = System.getProperty("chrome.options", "--headless,--disable-gpu,--window-size=1280,720");
-//            Arrays.stream(chromeArgs.split(",")).forEach(arg -> options.addArguments(arg.trim()));
-//            driver = new ChromeDriver(options);
+//            String chromeArgs = System.getProperty("chrome.ciOptions", "--headless,--disable-gpu,--window-size=1280,720");
+//            Arrays.stream(chromeArgs.split(",")).forEach(arg -> ciOptions.addArguments(arg.trim()));
+//            driver = new ChromeDriver(ciOptions);
 
             
-            options.addArguments("--headless=new");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--window-size=1280,720");
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            driver = new ChromeDriver(options);
+            ciOptions.addArguments("--headless=new");
+            ciOptions.addArguments("--disable-gpu");
+            ciOptions.addArguments("--window-size=1280,720");
+            ciOptions.addArguments("--remote-allow-origins=*");
+            ciOptions.addArguments("--no-sandbox");
+            ciOptions.addArguments("--disable-dev-shm-usage");
+            driver = new ChromeDriver(ciOptions);
         } else {
             System.out.println("Running locally. Launching browser in normal mode.");
-            driver = new ChromeDriver();
+            ciOptions.addArguments("--disable-notifications");
+            ciOptions.addArguments(
+                    "--disable-save-password-bubble",
+                    "--disable-features=PasswordLeakDetection",
+                    "--incognito"
+            );
+            driver = new ChromeDriver(ciOptions);
         }
 
         //System.setProperty("webdriver.chrome.driver", getChromeDriverPath());

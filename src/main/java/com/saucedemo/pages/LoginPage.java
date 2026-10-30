@@ -19,6 +19,9 @@ public class LoginPage extends BasePage2 {
 
 
     // Actions
+    public void clickUernameField() {
+        click(usernameField);
+    }
 
     public void enterUsername(String username) {
         set(usernameField, username);

@@ -1,40 +1,55 @@
 package com.saucedemo.tests;
 
-import com.saucedemo.pages.LoginPage;
+import com.saucedemo.pages.ProductsPage;
+import com.saucedemo.pages.components.SideMenu;
+import com.saucedemo.pages.components.TopHeader;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-import org.testng.Assert;
-
 import com.saucedemo.base.BaseTest;
-import com.saucedemo.pages.ConfirmationPage;
-import com.saucedemo.pages.DetailsPage;
-
-import com.saucedemo.pages.windows.DateRangeWindow;
 
 
-public class TestCases extends BaseTest{
+public class LoginTests extends BaseTest{
 
 
-	@Test
+	@Test(priority=2)
 	public void validLoginTest() {
 
-		loginPage.login("standard_user", "secret_sauce");
+		loginPage.enterUsername("standard_user");
+		loginPage.enterPassword("secret_sauce");
+		loginPage.clickLogin();
+		ProductsPage productsPage = new ProductsPage();
+		boolean actual= productsPage.isProductsPageDisplayed();
+		Assert.assertTrue(actual);
 
-		// Add assertion for successful login
 	}
+
+	@Test(priority=1)
+	public void invalidLoginTest() {
+
+		loginPage.enterUsername("locked_out_user");
+		loginPage.enterPassword("secret_sauce");
+		loginPage.clickLogin();
+		loginPage.isErrorMessageDisplayed();
+		boolean actual= loginPage.isErrorMessageDisplayed();
+		Assert.assertTrue(actual);
+
+	}
+
+
 
 //
 //	@Test(dataProvider = "searchData", dataProviderClass = com.saucedemo.utilities.ExcelDataProvider.class
 //			,    retryAnalyzer = com.saucedemo.utilities.RetryAnalyzer.class)
 //	public void CheckinAndCheckoutDate(String location,String checkin,String checkout) throws InterruptedException {
 //		homePage.setLocation(location);
-//		DateRangeWindow dateRangeWindow=homePage.openDatesWindow();
+//		SideMenu dateRangeWindow=homePage.openDatesWindow();
 //		dateRangeWindow.clickNextMonthButton();
 //		dateRangeWindow.clickCheckinDate(checkin);
 //		dateRangeWindow.clickCheckoutDate(checkout);
 //		homePage.clickSearchButton();
-//		DetailsPage detailsPage=homePage.clickTolipSeeAvailabilityButton();
+//		CartPage detailsPage=homePage.clickTolipSeeAvailabilityButton();
 //		Assert.assertTrue(detailsPage.getCheckinDate().contains("Oct 1"));
 //		Assert.assertTrue(detailsPage.getCheckoutDate().contains("Oct 14"));
 //	}
@@ -42,10 +57,10 @@ public class TestCases extends BaseTest{
 //
 //	@Test
 //	public void boxHotleName()  {
-//		DetailsPage detailsPage= new DetailsPage();
+//		CartPage detailsPage= new CartPage();
 //		detailsPage.clickQueenBedButton();
 //		detailsPage.selectAmountByOrder(1);
-//		ConfirmationPage confirmationPage=detailsPage.clickReseveButton();
+//		CheckoutPage confirmationPage=detailsPage.clickReseveButton();
 //		Assert.assertEquals(confirmationPage.getBoxHotleName(),"Tolip Hotel Alexandria");
 //	}
 	
