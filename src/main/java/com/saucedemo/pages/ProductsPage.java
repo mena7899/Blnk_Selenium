@@ -60,6 +60,16 @@ public class ProductsPage extends BasePage2 {
 		click(removeButton);
 	}
 
+	public String getProductButtonText(String productName) {
+
+		By productButton = By.xpath(
+				"//div[text()='" + productName +
+						"']/ancestor::div[@class='inventory_item']//button"
+		);
+
+		return find(productButton).getText();
+	}
+
 	// Get product names
 	public List<String> getProductNames() {
 		List<String> names = new java.util.ArrayList<>();
