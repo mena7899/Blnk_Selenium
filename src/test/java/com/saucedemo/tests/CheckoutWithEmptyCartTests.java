@@ -15,7 +15,7 @@ public class CheckoutWithEmptyCartTests extends BaseTest{
 
 
 	@Test(priority=12)
-	public void CheckoutWithEmptyCartTest() {
+	public void CheckoutWithEmptyCartTest()  {
 
 		loginPage.enterUsername("standard_user");
 		loginPage.enterPassword("secret_sauce");
@@ -25,12 +25,9 @@ public class CheckoutWithEmptyCartTests extends BaseTest{
 		topHeader.openCart();
 		CartPage cartPage = new CartPage();
 		cartPage.clickCheckout();
-		CheckoutPage checkoutPage = new CheckoutPage();
-		checkoutPage.fillCheckoutForm("test","test","test");
-		checkoutPage.clickContinue();
-		checkoutPage.clickFinish();
-		boolean actual = checkoutPage.isCheckoutComplete();
-		Assert.assertTrue(actual);
+		boolean actual = cartPage.isCheckoutButtonDisplayed();
+		Assert.assertTrue(actual, "Test failure: Checkout button is not displayed and user redirected to the next page");
+
 
 
 	}

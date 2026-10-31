@@ -97,4 +97,8 @@ public class CartPage extends BasePage2 {
 	public void clickCheckout() {
 		click(checkoutButton);
 	}
+
+	public boolean isCheckoutButtonDisplayed() {
+		return isElementVisible(checkoutButton);
+	}
 }
